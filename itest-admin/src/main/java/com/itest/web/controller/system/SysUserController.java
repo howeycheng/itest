@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
  * @author
  */
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping()
 public class SysUserController extends BaseController {
+
+    @Autowired
+    private SysLoginService loginService;
     @Autowired
     private ISysUserService iSysUserService;
-
 
 
     /**
@@ -43,6 +45,32 @@ public class SysUserController extends BaseController {
         } else {
             return AjaxResult.error();
         }
+    }
+
+
+    /**
+     * 登录方法
+     *
+     * @param loginBody 登录信息
+     * @return 结果
+     */
+    @PostMapping("/login")
+    public AjaxResult login(@RequestBody LoginBody loginBody) {
+        AjaxResult ajax = AjaxResult.success();
+        // 生成令牌
+        String token = loginService.login(loginBody.getUsername(), loginBody.getPassword());
+        ajax.put(Constants.TOKEN, token);
+        return ajax;
+    }
+
+    @PostMapping("/register")
+    public AjaxResult login(@RequestBody SysUser sysUser) {
+        if (iSysUserService.insertUser(sysUser) != 0) {
+            return AjaxResult.success();
+        } else {
+            return AjaxResult.error();
+        }
+
     }
 
 

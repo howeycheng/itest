@@ -1,203 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itest.web.dao.SysUserDao">
-    <resultMap id="BaseResultMap" type="com.itest.web.domain.SysUser">
-        <id column="user_id" jdbcType="BIGINT" property="userId"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
-        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
-        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
-        <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="status" jdbcType="CHAR" property="status"/>
-        <result column="login_ip" jdbcType="VARCHAR" property="loginIp"/>
-        <result column="login_date" jdbcType="TIMESTAMP" property="loginDate"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="remark" jdbcType="VARCHAR" property="remark"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        user_id
-        , user_name, nick_name, user_type, email, phone_number, `password`, `status`,
+  <resultMap id="BaseResultMap" type="com.itest.web.domain.SysUser">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, nick_name, user_type, email, phone_number, `password`, `status`, 
     login_ip, login_date, create_time, update_by, update_time, remark
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_user
-        where user_id = #{userId,jdbcType=BIGINT}
-    </select>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
     <select id="selectByUserName" resultType="com.itest.web.domain.SysUser">
-        select
-        <include refid="Base_Column_List"></include>
-        from sys_user
-        where user_name = #{userName,jdbcType=VARCHAR}
+    select
+    *
+    from sys_user
+    where user_name = #{userName,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete
-        from sys_user
-        where user_id = #{userId,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.itest.web.domain.SysUser"
-            useGeneratedKeys="true">
-        insert into sys_user (user_name, nick_name, user_type,
-                              email, phone_number, `password`,
-                              `status`, login_ip, login_date,
-                              create_time, update_by, update_time,
-                              remark)
-        values (#{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR},
-                #{email,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-                #{status,jdbcType=CHAR}, #{loginIp,jdbcType=VARCHAR}, #{loginDate,jdbcType=TIMESTAMP},
-                #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
-                #{remark,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.itest.web.domain.SysUser"
-            useGeneratedKeys="true">
-        insert into sys_user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="userName != null">
-                user_name,
-            </if>
-            <if test="nickName != null">
-                nick_name,
-            </if>
-            <if test="userType != null">
-                user_type,
-            </if>
-            <if test="email != null">
-                email,
-            </if>
-            <if test="phoneNumber != null">
-                phone_number,
-            </if>
-            <if test="password != null">
-                `password`,
-            </if>
-            <if test="status != null">
-                `status`,
-            </if>
-            <if test="loginIp != null">
-                login_ip,
-            </if>
-            <if test="loginDate != null">
-                login_date,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateBy != null">
-                update_by,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="remark != null">
-                remark,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="nickName != null">
-                #{nickName,jdbcType=VARCHAR},
-            </if>
-            <if test="userType != null">
-                #{userType,jdbcType=VARCHAR},
-            </if>
-            <if test="email != null">
-                #{email,jdbcType=VARCHAR},
-            </if>
-            <if test="phoneNumber != null">
-                #{phoneNumber,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=CHAR},
-            </if>
-            <if test="loginIp != null">
-                #{loginIp,jdbcType=VARCHAR},
-            </if>
-            <if test="loginDate != null">
-                #{loginDate,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                #{updateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark != null">
-                #{remark,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.itest.web.domain.SysUser">
-        update sys_user
-        <set>
-            <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="nickName != null">
-                nick_name = #{nickName,jdbcType=VARCHAR},
-            </if>
-            <if test="userType != null">
-                user_type = #{userType,jdbcType=VARCHAR},
-            </if>
-            <if test="email != null">
-                email = #{email,jdbcType=VARCHAR},
-            </if>
-            <if test="phoneNumber != null">
-                phone_number = #{phoneNumber,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                `password` = #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                `status` = #{status,jdbcType=CHAR},
-            </if>
-            <if test="loginIp != null">
-                login_ip = #{loginIp,jdbcType=VARCHAR},
-            </if>
-            <if test="loginDate != null">
-                login_date = #{loginDate,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark != null">
-                remark = #{remark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where user_id = #{userId,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.itest.web.domain.SysUser">
-        update sys_user
-        set user_name    = #{userName,jdbcType=VARCHAR},
-            nick_name    = #{nickName,jdbcType=VARCHAR},
-            user_type    = #{userType,jdbcType=VARCHAR},
-            email        = #{email,jdbcType=VARCHAR},
-            phone_number = #{phoneNumber,jdbcType=VARCHAR},
-            `password`   = #{password,jdbcType=VARCHAR},
-            `status`     = #{status,jdbcType=CHAR},
-            login_ip     = #{loginIp,jdbcType=VARCHAR},
-            login_date   = #{loginDate,jdbcType=TIMESTAMP},
-            create_time  = #{createTime,jdbcType=TIMESTAMP},
-            update_by    = #{updateBy,jdbcType=VARCHAR},
-            update_time  = #{updateTime,jdbcType=TIMESTAMP},
-            remark       = #{remark,jdbcType=VARCHAR}
-        where user_id = #{userId,jdbcType=BIGINT}
-    </update>
+    delete from sys_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.itest.web.domain.SysUser" useGeneratedKeys="true">
+    insert into sys_user (user_name, nick_name, user_type, 
+      email, phone_number, `password`, 
+      `status`, login_ip, login_date, 
+      create_time, update_by, update_time, 
+      remark)
+    values (#{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{loginIp,jdbcType=VARCHAR}, #{loginDate,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.itest.web.domain.SysUser" useGeneratedKeys="true">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="loginDate != null">
+        login_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null">
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itest.web.domain.SysUser">
+    update sys_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=CHAR},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null">
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itest.web.domain.SysUser">
+    update sys_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=CHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
 </mapper>

@@ -1,7 +1,7 @@
 package com.itest.web.service.impl;
 
-import com.itest.web.domain.Project;
-import com.itest.web.dao.ProjectDao;
+import com.itest.web.dao.SysProjectDao;
+import com.itest.web.domain.SysProject;
 import com.itest.web.service.ISysProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysProjectServiceImpl implements ISysProjectService {
     @Autowired
-    private ProjectDao projectDao;
+    private SysProjectDao projectDao;
 
     @Override
-    public Project selectProjectById(Integer projectId) {
+    public SysProject selectProjectById(Integer projectId) {
         return projectDao.selectByPrimaryKey(projectId);
     }
 }

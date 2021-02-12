@@ -2,7 +2,6 @@ package com.itest.web.service.impl;
 
 import com.itest.web.constant.Constants;
 import com.itest.web.domain.LoginUser;
-import com.itest.web.domain.SysUser;
 import com.itest.web.utils.IdUtils;
 import com.itest.web.utils.StringUtils;
 import io.jsonwebtoken.Claims;
@@ -13,9 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 程浩 on 2021/1/13
@@ -100,11 +97,11 @@ public class TokenService {
      * @return 令牌
      */
     public void verifyToken(LoginUser loginUser) {
-        long expireTime = loginUser.getExpireTime();
-        long currentTime = System.currentTimeMillis();
-        if (expireTime - currentTime <= MILLIS_MINUTE_TEN) {
+//        long expireTime = loginUser.getExpireTime();
+//        long currentTime = System.currentTimeMillis();
+//        if (expireTime - currentTime <= MILLIS_MINUTE_TEN) {
             refreshToken(loginUser);
-        }
+//        }
     }
 
     /**

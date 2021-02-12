@@ -3,16 +3,28 @@ package com.itest.web.domain;
 import java.io.Serializable;
 
 /**
- * project
+ * sys_project
  * @author 
  */
-public class Project implements Serializable {
+public class SysProject implements Serializable {
+    /**
+     * 项目ID
+     */
     private Integer projectId;
 
-    private String name;
+    /**
+     * 项目名称
+     */
+    private String projectName;
 
+    /**
+     * 描述
+     */
     private String description;
 
+    /**
+     * 创建者
+     */
     private String createUser;
 
     private static final long serialVersionUID = 1L;
@@ -25,12 +37,12 @@ public class Project implements Serializable {
         this.projectId = projectId;
     }
 
-    public String getName() {
-        return name;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public String getDescription() {

@@ -1,6 +1,7 @@
 package com.itest.web.controller.system;
 
 import com.itest.web.controller.core.BaseController;
+import com.itest.web.domain.SysProject;
 import com.itest.web.service.ISysProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +20,8 @@ public class SysProjectController extends BaseController {
     private ISysProjectService iSysProjectService;
 
     @GetMapping("/list")
-    public String getProjectList() {
-        return String.valueOf(iSysProjectService.selectProjectById(0));
+    public SysProject getProjectList() {
+        return iSysProjectService.selectProjectById(0);
     }
 
 }
