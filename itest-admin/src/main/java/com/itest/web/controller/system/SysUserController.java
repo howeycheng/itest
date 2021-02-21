@@ -36,19 +36,6 @@ public class SysUserController extends BaseController {
 
 
     /**
-     * 新增用户
-     */
-    @PostMapping("/add")
-    public AjaxResult add(@RequestBody SysUser user) {
-        if (iSysUserService.insertUser(user) != 0) {
-            return AjaxResult.success();
-        } else {
-            return AjaxResult.error();
-        }
-    }
-
-
-    /**
      * 登录方法
      *
      * @param loginBody 登录信息
@@ -65,6 +52,8 @@ public class SysUserController extends BaseController {
 
     @PostMapping("/register")
     public AjaxResult login(@RequestBody SysUser sysUser) {
+        sysUser.setStatus("0");
+        sysUser.setUserType("00");
         if (iSysUserService.insertUser(sysUser) != 0) {
             return AjaxResult.success();
         } else {
